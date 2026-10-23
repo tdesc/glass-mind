@@ -1,0 +1,38 @@
+--- a/assets/culture/mind_glass_site/worker/proxy.js
++++ b/assets/culture/mind_glass_site/worker/proxy.js
+@@ -498,8 +498,13 @@
+ 
+     const started = Date.now();
+     const target = `https://${PAGES_HOST}${url.pathname || "/"}${url.search}`;
++    const publicPaper = request.method === "GET" && /^\/(?:(?:ru|zh)\/)?glass-mind(?:\.html)?\/?$/.test(url.pathname);
+     const headers = new Headers(request.headers);
+     headers.set("Host", PAGES_HOST);
++    if (publicPaper) {
++      headers.delete("if-none-match");
++      headers.delete("if-modified-since");
++    }
+     const upstream = await fetch(target, {
+       method: request.method,
+       headers,
+@@ -511,6 +516,21 @@
+     if (isDocumentView(request, response)) {
+       ctx.waitUntil(recordPageView(env, url.pathname, response.status, Date.now() - started));
+     }
++    if (publicPaper && response.status === 200 && (response.headers.get("content-type") || "").toLowerCase().includes("text/html")) {
++      const publicPaperLinks = new Map([
++        ["https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft.md", "https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft.md"],
++        ["https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft-ru.md", "https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft-ru.md"]
++      ]);
++      const rewritten = new HTMLRewriter().on("a[href]", {
++        element(element) {
++          const destination = publicPaperLinks.get(element.getAttribute("href"));
++          if (destination) element.setAttribute("href", destination);
++        }
++      }).transform(response);
++      for (const header of ["etag", "last-modified", "content-length", "content-md5"]) rewritten.headers.delete(header);
++      rewritten.headers.set("cache-control", "no-cache");
++      return rewritten;
++    }
+     return response;
+   },
+ };
