@@ -1,0 +1,71 @@
+--- a/assets/culture/mind_glass_site/glass-mind.html
++++ b/assets/culture/mind_glass_site/glass-mind.html
+@@ -40,7 +40,7 @@
+             <a class="paper-button paper-button--primary" href="#paper">Read the rendered paper ↓</a>
+             <a class="paper-button" href="ru/glass-mind.html">Русская версия ↗</a>
+             <a class="paper-button paper-button--quiet" href="papers/glass-mind-v0.1-draft.md">Markdown source for agents ↗</a>
+-            <a class="paper-button paper-button--quiet" href="https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft.md" rel="noopener">GitHub paper source ↗</a>
++            <a class="paper-button paper-button--quiet" href="https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft.md" rel="noopener">GitHub paper source ↗</a>
+           </div>
+           <p class="paper-byline">Valentin Kalinin · August 2026 · working draft 0.1 · English edition</p>
+         </div>
+@@ -57,7 +57,7 @@
+           <p>Below is the complete working draft, formatted for people to read. Its structure, equations, evidence limits, and technical examples are preserved; the canonical Markdown source remains beside it.</p>
+           <div class="paper-reading__links">
+             <a href="papers/glass-mind-v0.1-draft.md">Markdown source for agents ↗</a>
+-            <a href="https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft.md" rel="noopener">GitHub paper source ↗</a>
++            <a href="https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft.md" rel="noopener">GitHub paper source ↗</a>
+             <a href="ru/glass-mind.html">Русская версия ↗</a>
+           </div>
+           <details class="paper-toc">
+@@ -468,7 +468,7 @@
+       </footer>
+     </article>
+   </main>
+-  <footer class="site-footer">mind.glass · Colony · Glass Mind · <a href="papers/glass-mind-v0.1-draft.md">Markdown source</a> · <a href="https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft.md" rel="noopener">GitHub</a></footer>
++  <footer class="site-footer">mind.glass · Colony · Glass Mind · <a href="papers/glass-mind-v0.1-draft.md">Markdown source</a> · <a href="https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft.md" rel="noopener">GitHub</a></footer>
+   <script src="shared/locale.js" data-locale="en"></script>
+ </body>
+ </html>
+--- a/assets/culture/mind_glass_site/ru/glass-mind.html
++++ b/assets/culture/mind_glass_site/ru/glass-mind.html
+@@ -40,7 +40,7 @@
+             <a class="paper-button paper-button--primary" href="#paper">Читать отрендеренную статью ↓</a>
+             <a class="paper-button" href="../glass-mind.html">English edition ↗</a>
+             <a class="paper-button paper-button--quiet" href="../papers/glass-mind-v0.1-draft-ru.md">Markdown-исходник для агентов ↗</a>
+-            <a class="paper-button paper-button--quiet" href="https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft-ru.md" rel="noopener">GitHub-исходник статьи ↗</a>
++            <a class="paper-button paper-button--quiet" href="https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft-ru.md" rel="noopener">GitHub-исходник статьи ↗</a>
+           </div>
+           <p class="paper-byline">Valentin Kalinin · August 2026 · working draft 0.1 · русское издание</p>
+         </div>
+@@ -57,7 +57,7 @@
+           <p>Ниже — полный текст рабочего черновика, отформатированный для чтения людьми. Структура, формулы, доказательные оговорки и технические примеры сохранены; исходный Markdown доступен рядом.</p>
+           <div class="paper-reading__links">
+             <a href="../papers/glass-mind-v0.1-draft-ru.md">Markdown-исходник для агентов ↗</a>
+-            <a href="https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft-ru.md" rel="noopener">GitHub-исходник статьи ↗</a>
++            <a href="https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft-ru.md" rel="noopener">GitHub-исходник статьи ↗</a>
+             <a href="../glass-mind.html">English edition ↗</a>
+           </div>
+           <details class="paper-toc">
+@@ -468,7 +468,7 @@
+       </footer>
+     </article>
+   </main>
+-  <footer class="site-footer">mind.glass · Colony · Glass Mind · <a href="../papers/glass-mind-v0.1-draft-ru.md">Markdown-исходник</a> · <a href="https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft-ru.md" rel="noopener">GitHub</a></footer>
++  <footer class="site-footer">mind.glass · Colony · Glass Mind · <a href="../papers/glass-mind-v0.1-draft-ru.md">Markdown-исходник</a> · <a href="https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft-ru.md" rel="noopener">GitHub</a></footer>
+   <script src="../shared/locale.js" data-locale="ru"></script>
+ </body>
+ </html>
+--- a/assets/culture/mind_glass_site/scripts/render-papers.mjs
++++ b/assets/culture/mind_glass_site/scripts/render-papers.mjs
+@@ -150,8 +150,8 @@
+   const sourceLabel = russian ? 'Markdown-исходник для агентов ↗' : 'Markdown source for agents ↗';
+   const githubLabel = russian ? 'GitHub-исходник статьи ↗' : 'GitHub paper source ↗';
+   const githubUrl = russian
+-    ? 'https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft-ru.md'
+-    : 'https://github.com/tdesc/atma/blob/main/assets/culture/mind_glass_site/papers/glass-mind-v0.1-draft.md';
++    ? 'https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft-ru.md'
++    : 'https://github.com/tdesc/glass-mind/blob/main/papers/glass-mind-v0.1-draft.md';
+   const backLabel = russian ? 'English edition' : 'Русская версия';
+   const abstractLabel = russian ? 'ПОЛНАЯ СТАТЬЯ · HTML-РЕДАКЦИЯ' : 'FULL PAPER · RENDERED EDITION';
+   const bodyIntro = russian
